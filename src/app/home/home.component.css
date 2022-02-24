@@ -1,0 +1,15 @@
+.item
+{
+width: 40%;
+height: 380px;
+}
+
+.itemslist
+{
+display: flex!important;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+min-height: auto;
+min-width: auto;
+}
