@@ -22,16 +22,23 @@
       </ul>
     </div>
 </nav> -->
-
 <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-<app-header></app-header>
 
+
+  <app-header></app-header>
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-    <a class="me-3 py-2 text-dark text-decoration-none" href="#">Home</a>
+    <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/home">Home</a>
     <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Cart</a> -->
     <a class="me-3 py-2 text-dark text-decoration-none"
              routerLink="/shopping-cart">
              Shopping Cart 
           </a>
+          
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="prodName"
+            (keyup.enter)="searchItem()">
+          
   </nav>
+  
 </div>
+
+

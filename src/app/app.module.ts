@@ -12,6 +12,9 @@ import { AuthenticateService } from './authenticate.service';
 import { SearchItemService } from './search-item.service';
 import { RandomRecipeService } from './random-recipe.service';
 import { HeaderComponent } from './header/header.component';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
+import { SearchPageComponent } from './search-page/search-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { HeaderComponent } from './header/header.component';
     HomeComponent,
     NavBarComponent,
     ShoppingCartComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +33,11 @@ import { HeaderComponent } from './header/header.component';
       
       { path: 'home', component: HomeComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
+      
+      { path: 'searchPage', component: SearchPageComponent },
     ]),
     HttpClientModule,
+    FormsModule,
   ],
   providers: [AuthenticateService,
   SearchItemService,

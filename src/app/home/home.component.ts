@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticateService } from '../authenticate.service';
 import { apiKey } from '../apiKey';
 import { SearchItemService } from '../search-item.service';
@@ -10,6 +10,8 @@ import { RandomRecipeService } from '../random-recipe.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @Input() proddata:any="";
 
   constructor(private authservice : AuthenticateService,private search :SearchItemService,
     private recipe:RandomRecipeService) {
@@ -26,6 +28,7 @@ export class HomeComponent implements OnInit {
   searchedData : any;
   recipeOfTheDay : any;
   product :any;
+  searchedItems:any;
 
   showProducts(){
     this.authservice.getProduct().subscribe(
@@ -43,6 +46,7 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+  
 
   addToCart(id:number,title:string){
     const item = {

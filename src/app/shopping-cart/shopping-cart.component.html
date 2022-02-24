@@ -1,1 +1,20 @@
-<p>shopping-cart works!</p>
+
+<h2>Cart</h2>
+
+
+<div class="itemslist"> 
+<div class="item" *ngFor="let i of items">
+<div > 
+    <img class="card-img-top" style="height: 250px"  src= {{i.image}} >
+    <div>
+        <h5 class="card-title">{{i.title }}</h5>	
+    </div>
+
+
+    <div class="card-footer">
+   Quantity:  {{getQuantity(i.id)}}
+</div>
+
+</div>
+</div>
+</div>
