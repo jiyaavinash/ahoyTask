@@ -1,27 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AuthenticateService } from '../authenticate.service';
 import { apiKey } from '../apiKey';
 import { SearchItemService } from '../search-item.service';
 import { RandomRecipeService } from '../random-recipe.service';
+import { SharedDataService } from '../shared-data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   @Input() proddata:any="";
-
+  searchitems:string="";
   constructor(private authservice : AuthenticateService,private search :SearchItemService,
-    private recipe:RandomRecipeService) {
+    private recipe:RandomRecipeService, private shareddata:SharedDataService) {
      
      } 
   ngOnInit(): void {
+    this.shareddata.selectedSearchedItem1.subscribe(
+      (i) =>{
+        this.searchitems = i
+      if(this.searchitems){
+        
+    console.log("serch",this.searchitems)
+        this.getSearchedProd();
+      }
+      else{
+        this.showProducts();
+      this.recipes();
+        }
+    } )
+
     // setTimeout(() => {
-      this.showProducts();
-    this.recipes();
+      
     // }, 3000);
+    
   }
 
   items:any;
@@ -31,18 +46,24 @@ export class HomeComponent implements OnInit {
   searchedItems:any;
 
   showProducts(){
+ 
     this.authservice.getProduct().subscribe(
       data=>{
-      console.log(data.products);
       this.items = data.products;
     })
   }
 
+  getSearchedProd(){
+    
+    this.search.searchProduct(this.searchitems).subscribe(
+     data => this.items = data.products
+    
+   )
+ }
   getInfo(id:number){
     this.search.searchItem(id).subscribe(
       data => {
         this.searchedData = data;
-        console.log(data);
       }
     )
   }
@@ -86,7 +107,7 @@ export class HomeComponent implements OnInit {
       return 0;
     }
     var quantity = Number(items.count);
-    console.log(quantity)
+    // console.log(quantity)
     return quantity;
   }
   recipes(){
@@ -96,5 +117,9 @@ export class HomeComponent implements OnInit {
         // console.log(data)
       }
     )
+  }
+  ngOnDestroy(): void {
+     this.shareddata.searchItem("");
+     this.shareddata.selectedSearchedItem1.unsubscribe();
   }
 }

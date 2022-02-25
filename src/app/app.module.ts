@@ -32,6 +32,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
     RouterModule.forRoot([
       
       { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       
       { path: 'searchPage', component: SearchPageComponent },

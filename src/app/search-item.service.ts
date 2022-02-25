@@ -8,8 +8,8 @@ import { products } from './products';
   providedIn: 'root'
 })
 export class SearchItemService {
-  private url = environment.baseUrl+ "/food/products/";
-  private produrl = environment.baseUrl+"food/products/search"
+  private url = environment.baseUrl+ "/food/products";
+  private produrl = environment.baseUrl+"/food/products/search"
   
   constructor(private http: HttpClient) { }
 
@@ -18,6 +18,6 @@ export class SearchItemService {
   }
 
   searchProduct(name:string){
-    return this.http.get<products>(this.url ,{ params: { query: name }});
+    return this.http.get<products>(this.produrl ,{ params: { apiKey: apiKey , query: name }});
   }
 }

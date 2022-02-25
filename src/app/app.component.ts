@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ahoy';
   searchedItems:any ;
-
+  
   getSearchData(prod:string){
   this.searchedItems= prod;
   console.log("here",this.searchedItems)

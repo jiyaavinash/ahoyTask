@@ -3,16 +3,17 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <app-nav-bar (showItems)="getSearchData($event)"></app-nav-bar>
+      <!-- <app-nav-bar (showItems)="getSearchData($event)"></app-nav-bar> -->
+      <app-nav-bar></app-nav-bar>
       
 
     </div>
   </div>
-  <div *ngIf="searchedItems">
+  <!-- <div *ngIf="searchedItems">
     
     <app-search-page [showItems]="searchedItems">
     </app-search-page>
-  </div>
+  </div> -->
 <router-outlet></router-outlet>
 
   <!-- <div class="row">
