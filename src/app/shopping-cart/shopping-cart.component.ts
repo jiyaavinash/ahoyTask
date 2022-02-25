@@ -35,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
       })
       })
     }
-    else{
+    if(!this.items){
       console.log("cart empty")
     }
     
