@@ -11,6 +11,5 @@ export class AppComponent {
   
   getSearchData(prod:string){
   this.searchedItems= prod;
-  console.log("here",this.searchedItems)
   }
 }

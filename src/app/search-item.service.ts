@@ -14,7 +14,7 @@ export class SearchItemService {
   constructor(private http: HttpClient) { }
 
   searchItem(id:number){
-    return this.http.get(this.url+id,{ params: { apiKey: apiKey }});
+    return this.http.get<products>(this.url+id,{ params: { apiKey: apiKey }});
   }
 
   searchProduct(name:string){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from '../authenticate.service';
+import { SearchItemService } from '../search-item.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,17 +10,33 @@ import { AuthenticateService } from '../authenticate.service';
 export class ShoppingCartComponent implements OnInit {
 
   items:any;
-  constructor(private authservice:AuthenticateService) { }
+  products = window.localStorage.getItem('id');
+  item = JSON.parse(this.products || '{}');
+  constructor(private search:SearchItemService) { }
 
   ngOnInit(): void {
   }
 
   showCartItems(){
-      this.authservice.getProduct().subscribe(
-        data=>{
-        console.log(data.products);
-        this.items = data.products;
-      })
+    var ids=[];
+    for(var key in this.item){
+      if(key =="id"){
+        ids.push(this.item[key])
+      }
+    }
+    ids.forEach(i=>{
+      this.search.searchItem(i).subscribe(
+      data=>{
+      console.log(data.products);
+      this.items = data.products;
+    })
+    })
+    
+      // this.authservice.getProduct().subscribe(
+      //   data=>{
+      //   console.log(data.products);
+      //   this.items = data.products;
+      // })
     
   }
 
