@@ -12,25 +12,33 @@ export class ShoppingCartComponent implements OnInit {
   items:any;
   products = window.localStorage.getItem('id');
   item = JSON.parse(this.products || '{}');
-  constructor(private search:SearchItemService) { }
+  constructor(private search:SearchItemService) {
+    this.showCartItems();
+   }
 
   ngOnInit(): void {
   }
 
   showCartItems(){
-    var ids=[];
+    var ids:Array <number>=[];
+    
     for(var key in this.item){
       if(key =="id"){
         ids.push(this.item[key])
       }
     }
-    ids.forEach(i=>{
-      this.search.searchItem(i).subscribe(
-      data=>{
-      console.log(data.products);
-      this.items = data.products;
-    })
-    })
+    if(ids){
+      ids.forEach(i=>{
+        this.search.searchItem(i).subscribe(
+        data=>{
+        this.items = data.products;
+      })
+      })
+    }
+    else{
+      console.log("cart empty")
+    }
+    
     
       // this.authservice.getProduct().subscribe(
       //   data=>{

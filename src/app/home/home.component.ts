@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.search.searchItem(id).subscribe(
       data => {
         this.searchedData = data;
+        alert(this.searchedData)
       }
     )
   }
@@ -120,6 +121,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
      this.shareddata.searchItem("");
-     this.shareddata.selectedSearchedItem1.unsubscribe();
+    //  this.shareddata.selectedSearchedItem1.unsubscribe();
   }
 }
